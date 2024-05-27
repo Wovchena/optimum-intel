@@ -244,6 +244,7 @@ def is_openvino_tokenizers_available():
             )
         logger.warning(message)
         # It's still worth trying to convert a tokenizers
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         return True
 
     return True
