@@ -379,13 +379,19 @@ def main_export(
                         f"models won't be generated. Exception: {exception}"
                     )
         else:
-            tokenizer = getattr(model, "tokenizer", None)
-            if tokenizer is not None:
-                export_tokenizer(tokenizer, output / "tokenizer")
+            try:
+                tokenizer = getattr(model, "tokenizer", None)
+                if tokenizer is not None:
+                    export_tokenizer(tokenizer, output / "tokenizer")
 
-            tokenizer_2 = getattr(model, "tokenizer_2", None)
-            if tokenizer_2 is not None:
-                export_tokenizer(tokenizer_2, output / "tokenizer_2")
+                tokenizer_2 = getattr(model, "tokenizer_2", None)
+                if tokenizer_2 is not None:
+                    export_tokenizer(tokenizer_2, output / "tokenizer_2")
+            except Exception as exception:
+                logger.warning(
+                    "Could not load tokenizer using specified model ID or path. OpenVINO tokenizer "
+                    f"models won't be generated. Exception: {exception}"
+                )
     elif convert_tokenizer and not is_openvino_tokenizers_available():
         logger.warning("Tokenizer won't be converted.")
 

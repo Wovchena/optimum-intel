@@ -243,7 +243,8 @@ def is_openvino_tokenizers_available():
                 "--extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly"
             )
         logger.warning(message)
-        return False
+        # It's still worth trying to convert a tokenizers
+        return True
 
     return True
 
